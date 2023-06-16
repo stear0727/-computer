@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>簡單計算機</title>
+  <style>
+    .calculator {
+      width: 200px;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+
+    .result {
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      width: 40px;
+      height: 40px;
+      margin: 2px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="result">
+      <input type="text" id="result" readonly>
+    </div>
+    <div>
+      <button class="btn" onclick="clearResult()">C</button>
+      <button class="btn" onclick="appendNumber(7)">7</button>
+      <button class="btn" onclick="appendNumber(8)">8</button>
+      <button class="btn" onclick="appendNumber(9)">9</button>
+      <button class="btn" onclick="appendOperator('+')">+</button>
+    </div>
+    <div>
+      <button class="btn" onclick="appendNumber(4)">4</button>
+      <button class="btn" onclick="appendNumber(5)">5</button>
+      <button class="btn" onclick="appendNumber(6)">6</button>
+      <button class="btn" onclick="appendOperator('-')">-</button>
+    </div>
+    <div>
+      <button class="btn" onclick="appendNumber(1)">1</button>
+      <button class="btn" onclick="appendNumber(2)">2</button>
+      <button class="btn" onclick="appendNumber(3)">3</button>
+      <button class="btn" onclick="appendOperator('*')">*</button>
+    </div>
+    <div>
+      <button class="btn" onclick="appendNumber(0)">0</button>
+      <button class="btn" onclick="appendOperator('/')">/</button>
+      <button class="btn" onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script>
+    let currentResult = '';
+
+    function appendNumber(number) {
+      currentResult += number;
+      document.getElementById('result').value = currentResult;
+    }
+
+    function appendOperator(operator) {
+      currentResult += operator;
+      document.getElementById('result').value = currentResult;
+    }
+
+    function calculate() {
+      try {
+        currentResult = eval(currentResult);
+        document.getElementById('result').value = currentResult;
+      } catch (error) {
+        alert('計算錯誤！');
+      }
+    }
+
+    function clearResult() {
+      currentResult = '';
+      document.getElementById('result').value = '';
+    }
+  </script>
+</body>
+</html>
